@@ -1,0 +1,44 @@
+
+
+.radhelper_logo {
+    font-family: 'Press Start 2P', cursive;
+}
+
+
+.radhelper_footer_button {
+    font-size: .9rem;
+}
+
+
+.radhelper_footer {
+    text-align:center;
+    margin-top: 2rem;
+}
+
+.radhelper_header {
+    text-align:center;
+    margin: 2rem 0;
+}
+
+@media screen and (max-width: 500px) {
+    html{
+        font-size: 13px;
+    }
+}
+
+a {
+    color: black;
+}
+
+a:hover {
+    color: black;
+    text-decoration: none;
+}
+
+.radhelper_header_nav {
+    margin: 0 0.5rem;
+}
+
+.radhelper_header_navbar {
+    margin: 1rem 0;
+}

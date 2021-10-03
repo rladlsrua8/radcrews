@@ -1,11 +1,29 @@
-<div style="text-align:center; margin: 2rem 0;">
+<div class="radhelper_header">
     <div>
-        <h1 style="font-family: 'Press Start 2P', cursive;">Radhelper</h1>
+        <h1 class="radhelper_logo">Radhelper</h1>
     </div>
-    <div>
-        <span>nav1</span>
-        <span>nav2</span>
-        <span>nav3</span>
-        <span>nav4</span>
+    <div class="radhelper_header_navbar">
+        <a href="{% url 'articleapp:list' %}" class="radhelper_header_nav">
+            <span>Articles</span>
+        </a>
+        <a href="{% url 'projectapp:list' %}" class="radhelper_header_nav">
+            <span>Projects</span>
+        </a>
+
+        {% if not user.is_authenticated %}
+        <a href="{% url 'accountapp:login' %}?next={{request.path}}" class="radhelper_header_nav">
+            <span>Login</span>
+        </a>
+        <a href="{% url 'accountapp:create' %}">
+            <span>SignUp</span>
+        </a>
+        {% else %}
+        <a href="{% url 'accountapp:detail' pk=user.pk %}" class="radhelper_header_nav">
+            <span>MyPage</span>
+        </a>
+        <a href="{% url 'accountapp:logout' %}?next={{request.path}}" class="radhelper_header_nav">
+            <span>Logout</span>
+        </a>
+        {% endif %}
     </div>
 </div>
