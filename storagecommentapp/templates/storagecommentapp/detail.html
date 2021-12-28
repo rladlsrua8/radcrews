@@ -1,0 +1,25 @@
+<div style="border: 1px solid; text-align: left; padding: 4%; margin: 1rem 0; border-radius: 1rem;
+            border-color: #bbb;">
+  <div>
+    <strong>
+      {{ storagecomment.writer.profile.nickname }}
+    </strong>
+    &nbsp&nbsp&nbsp
+    {{ storagecomment.created_at }}
+  </div>
+  <div style="margin: 1rem 0;">
+    {{ storagecomment.content }}
+  </div>
+  {% if image %}
+  <img style="width: 100%; border-radius: 1rem; margin: 2rem 0;"
+       src="{{ storagecomment.image.url }}" alt="">
+  {% endif %}
+
+  {% if storagecomment.writer == user %}
+  <div style="text-align: right">
+    <a href="{% url 'storagecommentapp:delete' pk=storagecomment.pk %}" class="btn btn-danger rounded-pill col-3 mt-3">
+      Delete
+    </a>
+  </div>
+  {% endif %}
+</div>

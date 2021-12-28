@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load post_reverse_filter %}
+
+{% block content %}
+
+    </style>
+    <div class="container my-3">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col" style="text-align: center">제목</th>
+                    <th scope="col">글쓴이</th>
+                    <th scope="col">날짜</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% if storage_list %}
+            {% for storage in storage_list %}
+            <tr>
+                <td>
+                    <a href="{% url 'storageapp:detail' pk=storage.pk %}">
+                            {{ storage.title }}
+                    </a>
+                    <span>
+                        <i style="vertical-align: middle; font-size: 1.2rem; margin: 0 .5em;"
+                        class="material-icons">
+                            question_answer
+                        </i>
+                            {{ storage.storagecomment.count }}
+                    </span>
+                </td>
+                <td>
+                    {{ storage.writer.profile.nickname }}
+                </td>
+                <td>
+                    {{ storage.created_at }}
+                </td>
+            </tr>
+            {% endfor %}
+            {% else %}
+            <tr>
+                <td style="text-align: center">
+                    Empty!
+                </td>
+            </tr>
+            {% endif %}
+            </tbody>
+        </table>
+    </div>
+
+    {% include 'snippets/pagination.html' with page_obj=page_obj %}
+
+    <div style="text-align: center">
+        <a href="{% url 'storageapp:create' %}" class="btn btn-dark rounded-pill col-3 mt-3 px-2">
+            Save the data
+        </a>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    <div class="container my-3" style="width: 50%; padding: 1rem;">
+        <table class="table">
+            <thead>
+                <tr>
+                   <th scope="col">구인구직</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for post in jobs_boards %}
+            {% if post %}
+            <tr>
+                 <td>
+                    <a href="{% url 'postapp:detail' pk=post.pk %}">
+                            {{ post.title }}
+                    </a>
+                    <span>
+                        <i style="vertical-align: middle; font-size: 1.2rem; margin: 0 .5em;"
+                        class="material-icons">
+                            question_answer
+                        </i>
+                            {{ post.postcomment.count }}
+                    </span>
+                </td>
+            </tr>
+            {% endif %}
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% include 'snippets/pagination.html' with page_obj=jobs_list %}
+
+    <div style="text-align: center">
+        <a href="{% url 'postapp:create' %}" class="btn btn-dark rounded-pill col-3 mt-3 px-2">
+            Create Post
+        </a>
+    </div>
+
+{% endblock %}

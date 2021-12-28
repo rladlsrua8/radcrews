@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div>
+    <div style="text-align: center; max-width: 700px; margin: 4rem auto;">
+      <h1>
+        {{ target_storage.title }}
+      </h1>
+
+      <h5 class="text-left">
+        <span>
+          {{ target_storage.writer.profile.nickname }}
+        </span>
+        <span class='text-muted'>
+          <i style="vertical-align: middle; font-size: 1.2rem; margin: 0 .5em;"
+             class="material-icons">
+              schedule
+          </i>
+          {{ target_storage.created_at }}
+        </span>
+      </h5>
+      <hr>
+
+      <div class="text-left">
+        {{ target_storage.content | safe }}
+      </div>
+
+      {% if target_storage.get_filename %}
+      <div>
+        <h5>첨부 파일</h5>
+        <div>{{ target_storage.get_filename }}</div>
+        <form action='{% url "storageapp:download" pk=target_storage.pk %}'>
+            <button type="submit", class="btn btn-success rounded-pill col-2 mt-3">
+              Download
+            </button>
+        </form>
+     </div>
+     {% endif %}
+
+      {% if target_storage.writer == user %}
+      <a href="{% url 'storageapp:update' pk=target_storage.pk %}"
+      class="btn btn-primary rounded-pill col-3 mt-3">
+        Update
+      </a>
+      <a href="{% url 'storageapp:delete' pk=target_storage.pk %}"
+      class="btn btn-danger rounded-pill col-3 mt-3">
+        Delete
+      </a>
+      {% endif %}
+      <hr>
+
+      {% for storagecomment in target_storage.storagecomment.all %}
+        {% include 'storagecommentapp/detail.html' with storagecomment=storagecomment %}
+      {% endfor %}
+
+      {% include 'storagecommentapp/create.html' with storage=target_storage %}
+    </div>
+  </div>
+
+{% endblock %}

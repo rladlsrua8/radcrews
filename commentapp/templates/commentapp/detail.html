@@ -10,9 +10,14 @@
   <div style="margin: 1rem 0;">
     {{ comment.content }}
   </div>
+  {% if image %}
+  <img style="width: 100%; border-radius: 1rem; margin: 2rem 0;"
+       src="{{ comment.image.url }}" alt="">
+  {% endif %}
+
   {% if comment.writer == user %}
   <div style="text-align: right">
-    <a href="{% url 'commentapp:delete' pk=comment.pk %}" class="btn btn-danger rounded-pill col-6 mt-3"">
+    <a href="{% url 'commentapp:delete' pk=comment.pk %}" class="btn btn-danger rounded-pill col-3 mt-3">
       Delete
     </a>
   </div>

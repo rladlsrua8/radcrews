@@ -7,25 +7,63 @@
       <h1>
         {{ target_article.title }}
       </h1>
-      <h5>
+      <div style="height: 2rem;">
+        <a href="{% url 'likeapp:article_like' pk=target_article.pk %}">
+          <i style="vertical-align: middle; font-size: 1.2rem;"
+            class="material-icons">
+            thumb_up_off_alt
+          </i>
+        </a>
+        <span style="vertical-align: middle; font-size: 1.2rem; margin: 0 .5em;">
+          {{ target_article.like }}
+        </span>
+      </div>
+      <h5 class="text-left">
         {{ target_article.writer.profile.nickname }}
+        <span class='text-muted'>
+          <i style="vertical-align: middle; font-size: 1.2rem; margin: 0 .5em;"
+             class="material-icons">
+              schedule
+          </i>
+          {{ target_article.created_at }}
+        </span>
       </h5>
       <hr>
 
       <img style="width: 100%; border-radius: 1rem; margin: 2rem 0;"
               src="{{ target_article.image.url }}" alt="">
+      {% if image2 %}
+        <img style="width: 100%; border-radius: 1rem; margin: 2rem 0;"
+               src="{{ target_article.image2.url }}" alt="">
+      {% endif %}
 
-      <p>
-        {{ target_article.content }}
-      </p>
+      {% if image3 %}
+        <img style="width: 100%; border-radius: 1rem; margin: 2rem 0;"
+                src="{{ target_article.image3.url }}" alt="">
+      {% endif %}
+
+      {% if image4 %}
+        <img style="width: 100%; border-radius: 1rem; margin: 2rem 0;"
+                src="{{ target_article.image4.url }}" alt="">
+      {% endif %}
+
+      {% if image5 %}
+        <img style="width: 100%; border-radius: 1rem; margin: 2rem 0;"
+                src="{{ target_article.image5.url }}" alt="">
+      {% endif %}
+
+
+      <div class="text-left">
+        {{ target_article.content | safe }}
+      </div>
 
       {% if target_article.writer == user %}
       <a href="{% url 'articleapp:update' pk=target_article.pk %}"
-      class="btn btn-dark rounded-pill col-6 mt-3">
+      class="btn btn-primary rounded-pill col-3 mt-3">
         Update
       </a>
       <a href="{% url 'articleapp:delete' pk=target_article.pk %}"
-      class="btn btn-danger rounded-pill col-6 mt-3">
+      class="btn btn-danger rounded-pill col-3 mt-3">
         Delete
       </a>
       {% endif %}

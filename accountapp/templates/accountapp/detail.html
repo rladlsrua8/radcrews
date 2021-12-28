@@ -11,7 +11,9 @@
       <h2>
         {{target_user.profile.nickname}}
         {% if target_user == user  %}
-        <a href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
+        <a class="material-icons"
+           style="box-shadow: 0 0 4px #ccc; border-radius: 10rem; padding: .4rem;"
+           href="{% url 'profileapp:update' pk=target_user.profile.pk %}">
           edit
         </a>
         {% endif %}
@@ -21,11 +23,13 @@
       </h5>
       {% else  %}
         {% if target_user == user  %}
-        <a href="{% url 'profileapp:create' %}">
-          <h5>
-            Create Profile
-          </h5>
-        </a>
+        <div>
+          <a href="{% url 'profileapp:create' %}">
+            <h5 class="btn btn-primary rounded-pill col-3 mt-3 px-2">
+              Create Profile
+            </h5>
+          </a>
+        </div>
         {% else %}
           <h2>
             닉네임 미설정!
@@ -34,15 +38,19 @@
       {% endif %}
 
       {% if target_user == user %}
-      <a href="{% url 'accountapp:update' pk=user.pk %}">
-        <p>
-          Change Info
-        </p>
+      <a class="material-icons"
+         style="box-shadow: 0 0 4px #ccc; border-radius: 10rem; padding: .4rem; margin: .4rem"
+         href="{% url 'accountapp:update' pk=user.pk %}">
+        <span>
+          settings
+        </span>
       </a>
-      <a href="{% url 'accountapp:delete' pk=user.pk %}">
-        <p>
-          Quit
-        </p>
+      <a class="material-icons"
+         style="box-shadow: 0 0 4px #fcc; border-radius: 10rem; padding: .4rem; margin: .4rem"
+         href="{% url 'accountapp:delete' pk=user.pk %}">
+        <span>
+          delete
+        </span>
       </a>
       {% endif %}
     </div>

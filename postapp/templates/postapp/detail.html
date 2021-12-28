@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <div>
+    <div style="text-align: center; max-width: 700px; margin: 4rem auto;">
+      <h1>
+        {{ target_post.title }}
+      </h1>
+
+      <h5 class="text-left">
+        <span>
+          {{ target_post.writer.profile.nickname }}
+        </span>
+        <span class='text-muted'>
+          <i style="vertical-align: middle; font-size: 1.2rem; margin: 0 .5em;"
+             class="material-icons">
+              schedule
+          </i>
+          {{ target_post.created_at }}
+        </span>
+      </h5>
+      <hr>
+      {% if image %}
+        <img style="width: 100%; border-radius: 1rem; margin: 2rem 0;"
+               src="{{ target_post.image.url }}" alt="">
+      {% endif %}
+
+      {% if image2 %}
+        <img style="width: 100%; border-radius: 1rem; margin: 2rem 0;"
+               src="{{ target_post.image2.url }}" alt="">
+      {% endif %}
+
+      {% if image3 %}
+        <img style="width: 100%; border-radius: 1rem; margin: 2rem 0;"
+                src="{{ target_post.image3.url }}" alt="">
+      {% endif %}
+
+      {% if image4 %}
+        <img style="width: 100%; border-radius: 1rem; margin: 2rem 0;"
+                src="{{ target_post.image4.url }}" alt="">
+      {% endif %}
+
+
+      <div class="text-left">
+        {{ target_post.content | safe }}
+      </div>
+
+      {% if target_post.writer == user %}
+      <a href="{% url 'postapp:update' pk=target_post.pk %}"
+      class="btn btn-primary rounded-pill col-3 mt-3">
+        Update
+      </a>
+      <a href="{% url 'postapp:delete' pk=target_post.pk %}"
+      class="btn btn-danger rounded-pill col-3 mt-3">
+        Delete
+      </a>
+      {% endif %}
+      <hr>
+
+      {% for postcomment in target_post.postcomment.all %}
+        {% include 'postcommentapp/detail.html' with postcomment=postcomment %}
+      {% endfor %}
+
+      {% include 'postcommentapp/create.html' with post=target_post %}
+    </div>
+  </div>
+
+{% endblock %}

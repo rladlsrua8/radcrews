@@ -1,5 +1,6 @@
-from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import login_required, user_passes_test
 from django.shortcuts import render
+from django.contrib.auth.mixins import UserPassesTestMixin
 
 # Create your views here.
 from django.urls import reverse, reverse_lazy
@@ -13,12 +14,18 @@ from articleapp.models import Article
 from commentapp.forms import CommentCreationForm
 
 
+
+
 @method_decorator(login_required, 'get')
 @method_decorator(login_required, 'post')
-class ArticleCreateView(CreateView):
+class ArticleCreateView(UserPassesTestMixin, CreateView):
     model = Article
     form_class = ArticleCreationForm
     template_name = 'articleapp/create.html'
+    permission_denied_message = "인증 후 이용 가능합니다"
+
+    def test_func(self):
+        return self.request.user.is_staff
 
     def form_valid(self, form):
         temp_article = form.save(commit=False)
@@ -60,9 +67,13 @@ class ArticleDeleteView(DeleteView):
     success_url = reverse_lazy('articleapp:list')
     template_name = 'articleapp/delete.html'
 
-class ArticleListView(ListView):
+@method_decorator(login_required, 'get')
+class ArticleListView(UserPassesTestMixin,ListView):
     model = Article
     context_object_name = 'article_list'
     template_name = 'articleapp/list.html'
     paginate_by = 4
+
+    def test_func(self):
+        return self.request.user.is_staff
 

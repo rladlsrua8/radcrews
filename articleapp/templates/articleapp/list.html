@@ -34,14 +34,32 @@
       {% for article in article_list %}
         <a href="{% url 'articleapp:detail' pk=article.pk %}">
             {% include 'snippets/card.html' with article=article %}
+            <span>
+                <span style="font-weight: bold">#{{ article.project.title }}</span>
+                <span>
+                    <i style="vertical-align: middle; font-size: 1.2rem; margin: 0 .5em;"
+                    class="material-icons">
+                        chat_bubble_outline
+                    </i>
+                    {{ article.comment.count }}
+                </span>
+                <span>
+                    <i style="vertical-align: middle; font-size: 1.2rem; margin: 0 .5em;"
+                    class="material-icons">
+                        thumb_up_off_alt
+                    </i>
+                    {{ article.like }}
+                </span>
+            </span>
         </a>
+
       {% endfor %}
     </div>
     <script src="{% static 'js/magicgrid.js' %}"></script>
     {% else %}
     <div>
         <h1 style="text-align: center">
-            No Articles YET!
+            No Questions YET!
         </h1>
     </div>
     {% endif %}
@@ -49,8 +67,8 @@
     {% include 'snippets/pagination.html' with page_obj=page_obj %}
 
     <div style="text-align: center">
-        <a href="{% url 'articleapp:create' %}" class="btn btn-dark rounded-pill col-6 mt-3 px-2">
-            Create Article
+        <a href="{% url 'articleapp:create' %}" class="btn btn-dark rounded-pill col-3 mt-3 px-2">
+            Ask a Question
         </a>
     </div>
 

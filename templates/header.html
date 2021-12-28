@@ -1,13 +1,26 @@
 <div class="radhelper_header">
     <div>
-        <h1 class="radhelper_logo">Radhelper</h1>
+        <a href="{% url 'articleapp:list' %}">
+            <h3 class="radhelper_logo">RadCrews</h3>
+        </a>
     </div>
     <div class="radhelper_header_navbar">
         <a href="{% url 'articleapp:list' %}" class="radhelper_header_nav">
-            <span>Articles</span>
+            <span>Help me!</span>
         </a>
         <a href="{% url 'projectapp:list' %}" class="radhelper_header_nav">
-            <span>Projects</span>
+            <span>Specialty</span>
+        </a>
+        <a href="{% url 'subscribeapp:list' %}" class="radhelper_header_nav">
+            <span>Subscription</span>
+        </a>
+
+        <a href="{% url 'postapp:list' %}" class="radhelper_header_nav">
+            <span>Board</span>
+        </a>
+
+        <a href="{% url 'storageapp:list' %}" class="radhelper_header_nav">
+            <span>Storage</span>
         </a>
 
         {% if not user.is_authenticated %}
