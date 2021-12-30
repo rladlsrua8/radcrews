@@ -2,6 +2,7 @@
 
 .radhelper_logo {
     font-family: 'Press Start 2P', cursive;
+    vertical-align: middle;
 }
 
 
@@ -13,11 +14,13 @@
 .radhelper_footer {
     text-align:center;
     margin-top: 2rem;
+    vertical-align: middle;
 }
 
 .radhelper_header {
     text-align:center;
     margin: 2rem 0;
+    vertical-align: middle;
 }
 
 @media screen and (max-width: 500px) {
@@ -42,3 +45,4 @@ a:hover {
 .radhelper_header_navbar {
     margin: 1rem 0;
 }
+
