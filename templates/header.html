@@ -1,8 +1,28 @@
 <div class="radhelper_header">
-    <div>
-        <a href="{% url 'articleapp:list' %}">
-            <h3 class="radhelper_logo">RadCrews</h3>
-        </a>
+    <div class="a">
+        <div></div>
+        <div>
+            <a href="{% url 'articleapp:list' %}">
+                <h3 class="radhelper_logo">RadCrews</h3>
+            </a>
+        </div>
+        <div>
+            {% if not user.is_authenticated %}
+            <a href="{% url 'accountapp:create' %}" class="radhelper_header_nav">
+                <span>SignUp</span>
+            </a>
+            <a href="{% url 'accountapp:login' %}?next={{request.path}}" class="radhelper_header_nav">
+                <span>Login</span>
+            </a>
+            {% else %}
+            <a href="{% url 'accountapp:detail' pk=user.pk %}" class="radhelper_header_nav">
+                <span>MyPage</span>
+            </a>
+            <a href="{% url 'accountapp:logout' %}?next={{request.path}}" class="radhelper_header_nav">
+                <span>Logout</span>
+            </a>
+            {% endif %}
+        </div>
     </div>
     <div class="radhelper_header_navbar">
         <a href="{% url 'articleapp:list' %}" class="radhelper_header_nav">
@@ -22,21 +42,70 @@
         <a href="{% url 'storageapp:list' %}" class="radhelper_header_nav">
             <span>Storage</span>
         </a>
-
-        {% if not user.is_authenticated %}
-        <a href="{% url 'accountapp:login' %}?next={{request.path}}" class="radhelper_header_nav">
-            <span>Login</span>
-        </a>
-        <a href="{% url 'accountapp:create' %}">
-            <span>SignUp</span>
-        </a>
-        {% else %}
-        <a href="{% url 'accountapp:detail' pk=user.pk %}" class="radhelper_header_nav">
-            <span>MyPage</span>
-        </a>
-        <a href="{% url 'accountapp:logout' %}?next={{request.path}}" class="radhelper_header_nav">
-            <span>Logout</span>
-        </a>
-        {% endif %}
     </div>
 </div>
+
+
+<!--Original-->
+<!--<div class="radhelper_header">-->
+<!--    <div class="a">-->
+<!--        <div></div>-->
+<!--        <div>-->
+<!--            <a href="{% url 'articleapp:list' %}">-->
+<!--                <h3 class="radhelper_logo">RadCrews</h3>-->
+<!--            </a>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            {% if not user.is_authenticated %}-->
+<!--            <a href="{% url 'accountapp:login' %}?next={{request.path}}" class="radhelper_header_nav">-->
+<!--                <span>Login</span>-->
+<!--            </a>-->
+<!--            <a href="{% url 'accountapp:create' %}">-->
+<!--                <span>SignUp</span>-->
+<!--            </a>-->
+<!--            {% else %}-->
+<!--            <a href="{% url 'accountapp:detail' pk=user.pk %}" class="radhelper_header_nav">-->
+<!--                <span>MyPage</span>-->
+<!--            </a>-->
+<!--            <a href="{% url 'accountapp:logout' %}?next={{request.path}}" class="radhelper_header_nav">-->
+<!--                <span>Logout</span>-->
+<!--            </a>-->
+<!--            {% endif %}-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="radhelper_header_navbar">-->
+<!--        <a href="{% url 'articleapp:list' %}" class="radhelper_header_nav">-->
+<!--            <span>Help me!</span>-->
+<!--        </a>-->
+<!--        <a href="{% url 'projectapp:list' %}" class="radhelper_header_nav">-->
+<!--            <span>Specialty</span>-->
+<!--        </a>-->
+<!--        <a href="{% url 'subscribeapp:list' %}" class="radhelper_header_nav">-->
+<!--            <span>Subscription</span>-->
+<!--        </a>-->
+
+<!--        <a href="{% url 'postapp:list' %}" class="radhelper_header_nav">-->
+<!--            <span>Board</span>-->
+<!--        </a>-->
+
+<!--        <a href="{% url 'storageapp:list' %}" class="radhelper_header_nav">-->
+<!--            <span>Storage</span>-->
+<!--        </a>-->
+
+<!--        {% if not user.is_authenticated %}-->
+<!--        <a href="{% url 'accountapp:login' %}?next={{request.path}}" class="radhelper_header_nav">-->
+<!--            <span>Login</span>-->
+<!--        </a>-->
+<!--        <a href="{% url 'accountapp:create' %}">-->
+<!--            <span>SignUp</span>-->
+<!--        </a>-->
+<!--        {% else %}-->
+<!--        <a href="{% url 'accountapp:detail' pk=user.pk %}" class="radhelper_header_nav">-->
+<!--            <span>MyPage</span>-->
+<!--        </a>-->
+<!--        <a href="{% url 'accountapp:logout' %}?next={{request.path}}" class="radhelper_header_nav">-->
+<!--            <span>Logout</span>-->
+<!--        </a>-->
+<!--        {% endif %}-->
+<!--    </div>-->
+<!--</div>-->

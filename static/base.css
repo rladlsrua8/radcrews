@@ -1,10 +1,12 @@
-
-
 .radhelper_logo {
     font-family: 'Press Start 2P', cursive;
     vertical-align: middle;
 }
 
+.a {
+    display :grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
 
 .radhelper_footer_button {
     font-size: .9rem;
@@ -45,4 +47,3 @@ a:hover {
 .radhelper_header_navbar {
     margin: 1rem 0;
 }
-
