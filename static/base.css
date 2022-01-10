@@ -3,11 +3,6 @@
     vertical-align: middle;
 }
 
-.a {
-    display :grid;
-    grid-template-columns: 1fr 1fr 1fr;
-}
-
 .radhelper_footer_button {
     font-size: .9rem;
 }
