@@ -5,19 +5,19 @@
                 <h3 class="radhelper_logo">RadCrews</h3>
             </a>
         </div>
-        <div style="text-align: right; margin: 0 1rem">
+        <div style="text-align: right; margin: 0 1rem;">
             {% if not user.is_authenticated %}
-            <a href="{% url 'accountapp:create' %}" class="radhelper_header_nav btn btn-outline-dark">
+            <a href="{% url 'accountapp:create' %}" class="btn btn-outline-dark">
                 <span>SignUp</span>
             </a>
-            <a href="{% url 'accountapp:login' %}?next={{request.path}}" class="radhelper_header_nav btn btn-outline-dark">
+            <a href="{% url 'accountapp:login' %}?next={{request.path}}" class="btn btn-outline-dark">
                 <span>Login</span>
             </a>
             {% else %}
-            <a href="{% url 'accountapp:detail' pk=user.pk %}" class="radhelper_header_nav btn btn-outline-dark">
+            <a href="{% url 'accountapp:detail' pk=user.pk %}" class="btn btn-outline-dark">
                 <span>MyPage</span>
             </a>
-            <a href="{% url 'accountapp:logout' %}?next={{request.path}}" class="radhelper_header_nav btn btn-outline-dark">
+            <a href="{% url 'accountapp:logout' %}?next={{request.path}}" class="btn btn-outline-dark">
                 <span>Logout</span>
             </a>
             {% endif %}
