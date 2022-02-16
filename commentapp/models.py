@@ -11,4 +11,4 @@ class Comment(models.Model):
 
     content = models.TextField(null=False)
     created_at = models.DateTimeField(auto_now=True)
-    image = models.ImageField(upload_to='comment/', null=True, blank=True)
+    image = models.ImageField(upload_to='comment/%Y/%m/%d', null=True, blank=True)

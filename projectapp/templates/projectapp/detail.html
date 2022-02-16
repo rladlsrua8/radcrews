@@ -23,7 +23,7 @@
             </a>
         {% else %}
             <a href="{% url 'subscribeapp:subscribe' %}?project_pk={{ target_project.pk }}"
-              class="btn btn-danger rounded-pill px-4">
+              class="btn btn-secondary rounded-pill px-4">
               Unsubscribe
             </a>
         {% endif %}

@@ -17,7 +17,7 @@
 
   {% if storagecomment.writer == user %}
   <div style="text-align: right">
-    <a href="{% url 'storagecommentapp:delete' pk=storagecomment.pk %}" class="btn btn-danger rounded-pill col-3 mt-3">
+    <a href="{% url 'storagecommentapp:delete' pk=storagecomment.pk %}" class="btn btn-secondary rounded-pill col-3 mt-3">
       Delete
     </a>
   </div>

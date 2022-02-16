@@ -7,19 +7,28 @@
       <h1>
         {{ target_post.title }}
       </h1>
+      <div style="vertical-align: middle; text-align: left; margin: 0.4rem; margin-top: 0.3rem">
+        <div style="text-align: center; box-shadow: #d4d4d4 0px 0px 5px; border-radius: 10rem;
+            display: inline-block;">
+          <a href="{% url 'accountapp:detail' pk=target_post.writer.pk %}">
+            <img style="display: inline-block;    width: 2rem; height: 2rem; object-fit: cover;
+                        border-radius: 10rem; box-shadow: #cccccc 0px 0px 5px;
+                         margin: .3rem -0.3rem .3rem .3rem"
+                    src="{{ target_post.writer.profile.image.url }}" alt="">
+            <p style="text-align: center; vertical-align: middle; display: inline-block;
+                font-family: 'NanumSquareB', sans-serif; font-size: 1.1rem;
+                 margin: 0.3rem 0.6rem 0.3rem 0.6rem;">{{ target_post.writer.profile.nickname }}</p>
+          </a>
+        </div>
+          <span class='text-muted'>
+            <i style="vertical-align: middle; font-size: 1.2rem; margin: 0 .5em;"
+               class="material-icons">
+                schedule
+            </i>
+            {{ target_post.created_at }}
+          </span>
+      </div>
 
-      <h5 class="text-left">
-        <span>
-          {{ target_post.writer.profile.nickname }}
-        </span>
-        <span class='text-muted'>
-          <i style="vertical-align: middle; font-size: 1.2rem; margin: 0 .5em;"
-             class="material-icons">
-              schedule
-          </i>
-          {{ target_post.created_at }}
-        </span>
-      </h5>
       <hr>
       {% if image %}
         <img style="width: 100%; border-radius: 1rem; margin: 2rem 0;"
@@ -52,7 +61,7 @@
         Update
       </a>
       <a href="{% url 'postapp:delete' pk=target_post.pk %}"
-      class="btn btn-danger rounded-pill col-3 mt-3">
+      class="btn btn-secondary rounded-pill col-3 mt-3">
         Delete
       </a>
       {% endif %}

@@ -10,7 +10,7 @@ class Post(models.Model):
     title = models.CharField(max_length=200, null=False)
 
     content = models.TextField(null=True)
-    created_at = models.DateField(auto_now_add=True, null=True)
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
     hits = models.PositiveIntegerField(default=0)
     board_name = models.CharField(max_length=32, default='Posts')
 

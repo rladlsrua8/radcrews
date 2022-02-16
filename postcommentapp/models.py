@@ -11,4 +11,4 @@ class PostComment(models.Model):
 
     content = models.TextField(null=False)
     created_at = models.DateTimeField(auto_now=True)
-    image = models.ImageField(upload_to='postcomment/', null=True, blank=True)
+    image = models.ImageField(upload_to='postcomment/%Y/%m/%d', null=True, blank=True)

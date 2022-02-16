@@ -7,7 +7,7 @@
         </div>
         <form action="{% url 'postapp:delete' pk=target_post.pk %}" method="post">
             {% csrf_token %}
-            <input type="submit" class="btn btn-danger rounded-pill col-3 mt-3">
+            <input type="submit" class="btn btn-secondary rounded-pill col-3 mt-3">
         </form>
     </div>
 
