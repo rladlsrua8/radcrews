@@ -20,6 +20,9 @@ class CommentCreateView(CreateView):
         temp_comment = form.save(commit=False)
         temp_comment.article = Article.objects.get(pk=self.request.POST['article_pk'])
         temp_comment.writer = self.request.user
+        anonymous = self.request.POST.get('anonymous', False)
+        if anonymous == "y":
+            temp_comment.anonymous = True
         temp_comment.save()
         return super().form_valid(form)
 

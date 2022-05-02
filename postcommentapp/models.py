@@ -9,6 +9,8 @@ class PostComment(models.Model):
     post = models.ForeignKey(Post, on_delete=models.SET_NULL, null=True, related_name='postcomment')
     writer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name='postcomment')
 
+    anonymous = models.BooleanField(default=False)
+
     content = models.TextField(null=False)
     created_at = models.DateTimeField(auto_now=True)
     image = models.ImageField(upload_to='postcomment/%Y/%m/%d', null=True, blank=True)

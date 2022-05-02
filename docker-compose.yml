@@ -11,12 +11,12 @@ services:
     ports:
       - 80:80
   django_container_gunicorn:
-    image: django_test_image:4
+    image: django_test_image:11
     networks:
       - network
     volumes:
-      - static-volume:/home/radhelper/staticfiles
-      - media-volume:/home/radhelper/media
+      - static-volume:/home/radcrews/staticfiles
+      - media-volume:/home/radcrews/media
     secrets:
       - MARIADB_PASSWORD
       - DJANGO_SECRET_KEY
@@ -30,7 +30,7 @@ services:
       - MARIADB_PASSWORD
       - MARIADB_ROOT_PASSWORD
     environment:
-      MARIADB_USER: django
+      MARIADB_USER: rladlsrua8
       MARIADB_DATABASE: django
       MARIADB_PASSWORD_FILE: /run/secrets/MARIADB_PASSWORD
       MARIADB_ROOT_PASSWORD_FILE: /run/secrets/MARIADB_ROOT_PASSWORD

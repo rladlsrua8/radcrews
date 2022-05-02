@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+    {% if board_list %}
+    <div class="container">
+      {% for board in board_list %}
+        <a href="{% url 'boardapp:detail' pk=board.pk %}">
+            {{ board.title }}
+        </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <div class="text-center">
+        <h1>
+            No boards YET!
+        </h1>
+    </div>
+    {% endif %}
+
+    {% include 'snippets/pagination.html' with page_obj=page_obj %}
+
+{% endblock %}

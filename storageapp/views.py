@@ -94,4 +94,3 @@ def FileDownloadView(request, pk):
             response['Content-Disposition'] = 'inline;filename=' + os.path.basename(file_url)
             return response
         raise Http404
-

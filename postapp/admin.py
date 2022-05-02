@@ -9,8 +9,15 @@ class PostAdmin(SummernoteModelAdmin):
         'title',
         'content',
         'writer',
-        'board_name',
-        'hits'
+        'hits',
+        'tag_list',
+        'modify_dt',
 
     )
-    list_display_links = list_display
+    list_filter = ('modify_dt',)
+
+    def get_queryset(self, request):
+        return super().get_queryset(request).prefetch_related('tags')
+
+    def tag_list(self, obj):
+        return ', '.join(o.name for o in obj.tags.all())

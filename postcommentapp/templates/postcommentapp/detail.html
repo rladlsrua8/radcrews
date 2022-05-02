@@ -1,9 +1,12 @@
 <div style="border: 1px solid; text-align: left; padding: 4%; margin: 1rem 0; border-radius: 1rem;
             border-color: #bbb;">
+  {% if postcomment.anonymous == True %}
+  <span>익명</span>
+  {% else %}
   <div style="vertical-align: middle; text-align: left; margin: 0.4rem; margin-top: 0.3rem">
     <div style="text-align: center; box-shadow: #d4d4d4 0px 0px 5px; border-radius: 10rem;
             display: inline-block;">
-
+      <a href="{% url 'accountapp:detail' pk=postcomment.writer.pk %}">
         <img style="display: inline-block;    width: 2rem; height: 2rem; object-fit: cover;
                       border-radius: 10rem; box-shadow: #cccccc 0px 0px 5px;
                        margin: .3rem -0.3rem .3rem .3rem"
@@ -11,8 +14,10 @@
         <p style="text-align: center; vertical-align: middle; display: inline-block;
               font-family: 'NanumSquareB', sans-serif; font-size: 1.1rem;
                margin: 0.3rem 0.6rem 0.3rem 0.6rem;">{{ postcomment.writer.profile.nickname }}</p>
-
+      </a>
+    </div>
   </div>
+  {% endif %}
     &nbsp&nbsp&nbsp
     {{ postcomment.created_at }}
   <div style="margin: 1rem 0;">

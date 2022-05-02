@@ -1,4 +1,6 @@
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required, user_passes_test
+from django.db.models import Q
 from django.shortcuts import render
 from django.contrib.auth.mixins import UserPassesTestMixin
 
@@ -68,12 +70,64 @@ class ArticleDeleteView(DeleteView):
     template_name = 'articleapp/delete.html'
 
 @method_decorator(login_required, 'get')
-class ArticleListView(UserPassesTestMixin,ListView):
+class ArticleListView(UserPassesTestMixin, ListView):
     model = Article
     context_object_name = 'article_list'
     template_name = 'articleapp/list.html'
-    paginate_by = 4
+    paginate_by = 10
 
     def test_func(self):
         return self.request.user.is_staff
 
+    def get_queryset(self):
+        search_keyword = self.request.GET.get('q', '')
+        search_type = self.request.GET.get('type', '')
+        article_list = Article.objects.order_by('-id')
+
+        if search_keyword:
+            if len(search_keyword) > 1:
+                if search_type == 'all':
+                    search_article_list = article_list.filter(
+                        Q(title__icontains=search_keyword) | Q(content__icontains=search_keyword) | Q(
+                            writer__profile__nickname__icontains=search_keyword))
+                elif search_type == 'title_content':
+                    search_article_list = article_list.filter(
+                        Q(title__icontains=search_keyword) | Q(content__icontains=search_keyword))
+                elif search_type == 'title':
+                    search_article_list = article_list.filter(title__icontains=search_keyword)
+                elif search_type == 'content':
+                    search_article_list = article_list.filter(content__icontains=search_keyword)
+                elif search_type == 'writer':
+                    search_article_list = article_list.filter(writer__profile__nickname__icontains=search_keyword)
+
+                return search_article_list
+            else:
+                messages.error(self.request, '검색어는 2글자 이상 입력해주세요.')
+        return article_list
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        paginator = context['paginator']
+        page_numbers_range = 5
+        max_index = len(paginator.page_range)
+
+        page = self.request.GET.get('page')
+        current_page = int(page) if page else 1
+
+        start_index = int((current_page - 1) / page_numbers_range) * page_numbers_range
+        end_index = start_index + page_numbers_range
+        if end_index >= max_index:
+            end_index = max_index
+
+        page_range = paginator.page_range[start_index:end_index]
+        context['page_range'] = page_range
+
+        search_keyword = self.request.GET.get('q', '')
+        search_type = self.request.GET.get('type', '')
+
+        if len(search_keyword) > 1:
+            context['q'] = search_keyword
+        context['type'] = search_type
+
+        return context

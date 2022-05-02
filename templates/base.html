@@ -3,6 +3,7 @@
 
 {% include 'head.html' %}
 
+
 <body style="font-family: 'NanumSquareR';">
 
     {% include 'header.html' %}
@@ -25,6 +26,19 @@
     <hr>
 
     {% include 'footer.html' %}
+
+<script>
+    document.addEventListener('DOMContentLoaded', e => {
+
+        const searchForm = document.getElementById('search-form');
+
+        for (const check of document.getElementsByName('tags2')) {
+            check.addEventListener('change', () => {
+                searchForm.submit();
+            });
+        }
+    });
+</script>
 
 </body>
 </html>

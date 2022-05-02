@@ -2,7 +2,7 @@ FROM python:3.9.0
 
 WORKDIR /home/
 
-RUN echo "testing12"
+RUN echo "test1233"
 
 RUN git clone https://github.com/rladlsrua8/radcrews.git
 
@@ -13,8 +13,6 @@ RUN pip install -r requirements.txt
 RUN pip install gunicorn
 
 RUN pip install mysqlclient
-
-RUN export DJANGO_SETTINGS_MODULE=radcrews.settings
 
 EXPOSE 8000
 

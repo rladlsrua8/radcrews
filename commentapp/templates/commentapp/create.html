@@ -11,6 +11,12 @@
             {% bootstrap_form form %}
 
             {% if user.is_authenticated %}
+
+            <div>
+                <input type="checkbox" name="anonymous" value="y">
+                <span style="font-size: 1rem;">익명</span>
+            </div>
+
             <input type="submit" class="btn btn-dark rounded-pill col-3 mt-3">
             {% else %}
             <a href="{% url 'accountapp:login' %}?next={{ request.path }}"

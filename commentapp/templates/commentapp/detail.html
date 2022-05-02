@@ -1,5 +1,8 @@
 <div style="border: 1px solid; text-align: left; padding: 4%; margin: 1rem 0; border-radius: 1rem;
             border-color: #bbb;">
+  {% if comment.anonymous == True %}
+  <span>익명</span>
+  {% else %}
   <div style="vertical-align: middle; text-align: left; margin: 0.4rem; margin-top: 0.3rem">
     <div style="text-align: center; box-shadow: #d4d4d4 0px 0px 5px; border-radius: 10rem;
             display: inline-block;">
@@ -13,9 +16,10 @@
                  margin: 0.3rem 0.6rem 0.3rem 0.6rem;">{{ comment.writer.profile.nickname }}</p>
        </a>
     </div>
+  </div>
+  {% endif %}
     &nbsp&nbsp&nbsp
     {{ comment.created_at }}
-  </div>
   <div style="margin: 1rem 0;">
     {{ comment.content }}
   </div>

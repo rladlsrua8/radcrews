@@ -1,18 +1,4 @@
-{% extends 'base.html' %}
 {% load static %}
-
-{% block content %}
-
-    <div class="container my-3">
-        {% load taggit_templatetags2_tags %}
-        {% get_tagcloud as tags %}
-        {% for tag in tags %}
-        <span class="btn btn-light">
-            <a href="{% url 'postapp:tagged_object_list' tag.name %}"> {{tag.name}} ({{tag.num_times}})</a>
-        </span>
-        {% endfor %}
-    </div>
-
 
     <div class="container my-3">
         {% if q %}
@@ -34,7 +20,6 @@
                     <a href="{% url 'postapp:detail' pk=post.pk %}">
                            {{ post.title }}
                     </a>
-                    {% if post.postcomment.count > 0 %}
                     <span>
                         <i style="vertical-align: middle; font-size: 1.2rem; margin: 0 .5em;"
                         class="material-icons">
@@ -42,7 +27,6 @@
                         </i>
                             {{ post.postcomment.count }}
                     </span>
-                    {% endif %}
                 </td>
                 <td>
                     {{ post.writer.profile.nickname }}
@@ -138,5 +122,3 @@
         </a>
     </div>
 
-
-{% endblock %}
